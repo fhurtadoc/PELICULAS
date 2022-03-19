@@ -1,7 +1,7 @@
 const pool=require('../../conexion.SQL/conexion');
 
 const LIST=("SELECT s.score  FROM score_movie sm  inner join score s on s.id_score=sm.id_score  where sm.id_movies=?");
-const INSERT=("INSERT INTO app_peliculas.score (score) VALUES(?)");
+const INSERT=("INSERT INTO score (score) VALUES(?)");
 const INSERT_SCOREMOVIE=("INSERT INTO score_movie SET ?");
 
 module.exports={
