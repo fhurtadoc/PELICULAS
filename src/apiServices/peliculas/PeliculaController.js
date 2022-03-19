@@ -1,7 +1,6 @@
 const PeliculaM=require('./Pelicula_model');
 const Peliculas_dao=require('./Peliculas_dao');
 const Coment_dao=require('../coment/coment_dao');
-const score_model=require('../score/score_model');
 const peliculas_dto=require('./Pelicula_dto');
 const score_dao=require('../score/score_dao');
 
@@ -50,37 +49,37 @@ module.exports={
 
         Peliculas_dao.one_movie(id_movie, (res_peli_query, err)=>{
             // movie 
-            if(err) console.log(err_movie);
-            if(res_peli_query) 
-
-            Coment_dao.allcomentsX_movie(id_movie, (coments_query, err)=>{
-                if(err) console.log(err_movie);
-                if(coments_query){
-                    if (coments_query===undefined || coments_query===" " ||  coments_query.length==0 ){
-                        coments_query=[{coment:'pelicula sin comentarios'}]
-                    }
-                } 
-                score_model.calc_score(id_movie, (calScore, err)=>{
-                    if(err) console.log(err_movie);
+            if(err) console.log("err_movie");
+            if(res_peli_query){
+                score_dao.scores(id_movie, (calScore, err)=>{
+                    let promed;
                     if (calScore===undefined || calScore===" " ||  calScore.length==0 ){
-                        calScore=0
-                    }                    
-                    return res.send(peliculas_dto.single_all(res_peli_query[0], calScore, coments_query));
+                    promed=0
+                        }                    
+                        if(err) console.log(err_movie);
+                        let sum = 0;
+                        calScore.forEach(element => {
+                            sum+=element                        
+                        });                    
+                        promed=sum/calScore.length;
+                        clear=promed.toFixed(2)
+                        return res.send(peliculas_dto.single_all(res_peli_query[0], clear));
                 })
-            })
+            } 
         }); 
     },
 
     async score(req, res){
-        score=req.body.score;
-        movie_id=req.body.movie_id        
-        score_dao.score(score, movie_id, (id_score, err)=>{
+        var score=req.body.score;        
+        var movie_id=req.body.id_movie        
+        score_dao.score(score, (id_score, err)=>{
             if(err) console.log(err);
             var data_score={
                 id_score:id_score,
-                movie_id:movie_id
+                id_movies:movie_id
             }
             score_dao.score_movie(data_score, (score_dao, err)=>{
+                if(err) console.log("error");
                 if(score_dao) return res.send({menssaje:"se actualizo", codigo: 200}); 
             });
             

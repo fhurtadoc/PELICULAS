@@ -9,18 +9,7 @@ class Score {
 
 }
 
-Score.calc_score=function(id, done ){
-    score_dao.scores(id, done, (err, res)=>{
-        if(err){            
-            done(err);            
-        }else{            
-            let sum_score = lodash.sum(res);
-            let allScore=res.length;
-            let prome=allScore/sum_score
-            done(prome);
-        }
-    })
-}
+
 
 
 module.exports=Score;

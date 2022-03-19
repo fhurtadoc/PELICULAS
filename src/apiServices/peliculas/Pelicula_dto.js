@@ -2,7 +2,7 @@ var coment=(resource)=>({
     coment:resource.coment
 });
 
-var single_all = (resource, score, coments) => ({
+var single_all = (resource, score) => ({
     id_movie:resource.id_movie,
     title:resource.title,
     description:resource.description,
@@ -11,7 +11,7 @@ var single_all = (resource, score, coments) => ({
     date_release:resource.ate_release,
     cover:resource.cover,
     cal_score:score,
-    coments:coments
+    
 });
 
 var single = (resource, score, coments) => ({
