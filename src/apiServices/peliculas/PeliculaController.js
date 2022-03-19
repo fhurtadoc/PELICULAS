@@ -9,10 +9,15 @@ module.exports={
 
     async create_movie(req, res){
         
+        let fileName = "";
         
-        let filePath=req.files.cover.path;        
-        let fileSplit = filePath.split("/");
-        let fileName = fileSplit[3];
+        if(req.files.cover.path){
+            let filePath=req.files.cover.path;        
+            let fileSplit = filePath.split("/");
+            fileName = fileSplit[3];
+        }    
+        
+        
 
         let title = req.body.title
         let description= req.body.description
