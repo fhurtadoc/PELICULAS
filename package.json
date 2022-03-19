@@ -4,7 +4,7 @@
   "description": "back app peliculas",
   "main": "index.js",
   "scripts": {
-    "test": "node ./src/bin/www",
+    "start": "node ./src/bin/www",
     "dev": "nodemon ./src/bin/www"
   },
   "dependencies": {
