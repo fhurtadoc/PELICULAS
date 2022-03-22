@@ -67,7 +67,8 @@ module.exports={
                             sum+=element                        
                         });                    
                         promed=sum/calScore.length;
-                        clear=promed.toFixed(2)
+                        clear=promed.toFixed(2)                        
+                        console.log(peliculas_dto.single_all(res_peli_query[0], clear));
                         return res.send(peliculas_dto.single_all(res_peli_query[0], clear));
                 })
             } 

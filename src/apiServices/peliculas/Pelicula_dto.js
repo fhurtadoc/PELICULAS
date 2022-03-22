@@ -8,7 +8,7 @@ var single_all = (resource, score) => ({
     description:resource.description,
     long_time:resource.long_time,
     url_youtube:resource.url_youtube,
-    date_release:resource.ate_release,
+    date_release:resource.date_release,
     cover:resource.cover,
     cal_score:score,
     
@@ -20,7 +20,7 @@ var single = (resource, score, coments) => ({
     description:resource.description,
     long_time:resource.long_time,
     url_youtube:resource.url_youtube,
-    date_release:resource.ate_release,
+    date_release:resource.date_release,
     cover:resource.cover,    
 });
 
